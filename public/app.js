@@ -211,7 +211,7 @@ const DashboardStats = ({ stats }) => {
           <i className="fas fa-dollar-sign text-yellow-500 text-2xl mr-3"></i>
           <div>
             <p className="text-sm text-gray-600">Total Value</p>
-            <p className="text-2xl font-bold">${(stats.total_value || 0).toFixed(2)}</p>
+            <p className="text-2xl font-bold">${parseInt(stats.total_value || 0).toFixed(2)}</p>
           </div>
         </div>
       </div>
