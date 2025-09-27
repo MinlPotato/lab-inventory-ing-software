@@ -17,6 +17,7 @@ app.use(express.static('public'));
 
 const pool = mysql.createPool({
   host: process.env.HOST || 'localhost',
+  port: 3306,
   user: process.env.USER || 'myuser',
   password: process.env.DATABASE_PASSWORD || 'mypassword',
   database: process.env.DATABASE || 'myapp',
