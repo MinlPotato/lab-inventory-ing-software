@@ -64,7 +64,22 @@ async function initDb() {
     conn.release();
   }
 }
-initDb().catch(console.error);
+
+async function waitForDb(retries = 10, delay = 5000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await initDb();
+      console.log('Database initialized successfully');
+      return;
+    } catch (err) {
+      console.log(`MySQL not ready, retrying in ${delay/1000}s...`);
+      await new Promise(res => setTimeout(res, delay));
+    }
+  }
+  throw new Error('Could not connect to MySQL after multiple attempts');
+}
+
+waitForDb();
 
 // API ROUTES
 app.get('/api/products', async (req, res) => {
